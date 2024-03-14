@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
 }
 
 class TypingPage extends StatefulWidget {
-  TypingPage({Key key}) : super(key: key);
+  TypingPage({Key? key}) : super(key: key);
 
   @override
   _TypingPageState createState() => _TypingPageState();
 }
 
 class _TypingPageState extends State<TypingPage> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
@@ -54,7 +54,7 @@ class _TypingPageState extends State<TypingPage> {
                 labelText: 'Your Text',
               ),
               validator: (value) =>
-                  value.isEmpty ? 'Input at least one character' : null,
+                  value!.isEmpty ? 'Input at least one character' : null,
             ),
           ),
         ),
@@ -62,7 +62,7 @@ class _TypingPageState extends State<TypingPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_forward),
         onPressed: () {
-          if (_formKey.currentState.validate()) {
+          if (_formKey.currentState!.validate()) {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
@@ -85,9 +85,9 @@ class DisplayPage extends StatefulWidget {
   final void Function() doOnInit;
 
   const DisplayPage({
-    @required this.displayText,
-    @required this.doOnInit,
-    Key key,
+    required this.displayText,
+    required this.doOnInit,
+    Key? key,
   }) : super(key: key);
 
   @override
